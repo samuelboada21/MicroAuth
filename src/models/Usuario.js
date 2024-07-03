@@ -53,7 +53,7 @@ const Usuario = sequelize.define(
           user.password = hashedPassword;
         } catch (err) {
           const errorPassword = new Error(
-            `Error al intentar encriptar la contraseña del usuario con ID ${user.id}`
+            `Error al intentar encriptar la contraseña del usuario`
           );
           errorPassword.stack = err.stack;
           throw errorPassword;

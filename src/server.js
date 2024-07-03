@@ -1,21 +1,23 @@
 import express from "express";
 import logger from "./middlewares/logger.js";
-import errorHandler from './middlewares/errorHandler.js';
+import errorHandler from "./middlewares/errorHandler.js";
 import sequelize from "./database/db.js";
 import dotenv from "dotenv";
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import corsOptions from './utils/corsOptions.js';
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import corsOptions from "./utils/corsOptions.js";
 import generateRole from "./utils/generateRole.js";
-import pino_http from 'pino-http';
-import pino from 'pino';
-import helmet from 'helmet';
+import pino_http from "pino-http";
+import pino from "pino";
+import helmet from "helmet";
+import createAdminUser from './utils/createAdmin.js'
 
 //importamos las asociaciones de la db
 import "./database/associations.js";
 
 //Importamos las rutas de la API
 import authRoutes from "./routes/auth.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
@@ -62,7 +64,8 @@ app.use(
   })
 );
 //Rutas
-app.use('/api/auth', authRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 // En caso de acceder a una ruta no especificada
 app.all("*", (req, res) => {
   res.status(404);
@@ -82,7 +85,9 @@ const main = async () => {
     await sequelize.sync();
     //generamos los roles automaticamente
     await generateRole();
-
+    // creamos el usuario administrador
+    await createAdminUser();
+    
     const server = app.listen(PORT, () => {
       logger.info(
         { status: "Bienvenido, servidor actualmente en funcionamiento" },
