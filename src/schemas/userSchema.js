@@ -1,5 +1,5 @@
 import z from "zod";
-import validateData from "../util/validateData.js";
+import validateData from "../utils/validateData.js";
 
 //esquema para usuario
 export const usuarioSchema = z
@@ -12,7 +12,7 @@ export const usuarioSchema = z
             required_error: "El nombre es requerido",
           })
           .min(2, { message: "El nombre es muy corto" })
-          .max(15, {
+          .max(25, {
             message: "El nombre supera la cantidad de caracteres permitidos",
           }),
         apellido: z
@@ -21,7 +21,7 @@ export const usuarioSchema = z
             required_error: "El apellido es requerido",
           })
           .min(2, { message: "El apellido es muy corto" })
-          .max(15, {
+          .max(25, {
             message: "El apellido supera la cantidad de caracteres permitidos",
           }),
         correo_personal: z
@@ -84,7 +84,7 @@ export const usuarioSchema = z
 // Esquema de inicio de sesión
 const loginSchema = z
   .object({
-    correo_institucional: z
+    correo_personal: z
       .string({
         invalid_type_error: "El email solo puede ser texto",
       })

@@ -13,7 +13,7 @@ const verifyJWT = async (req, res, next) => {
         // Verificamos los datos del payload
         const foundUser = await Usuario.findByPk(id);
 
-        if(!foundUser || !foundUser.estado) {
+        if(!foundUser) {
             req.log.warn({ user: foundUser !== null ? [ foundUser.id, foundUser.nombre ] : 'usuario no registrado' }, 'Uso de token con acceso no autorizado');
             return res.status(401).json({ message: 'Acceso no autorizado' });
         }

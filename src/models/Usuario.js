@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import encrypt from "../util/encryptPassword.js";
+import encrypt from "../utils/encryptPassword.js";
 import sequelize from "../database/db.js";
 
 const Usuario = sequelize.define(
@@ -24,7 +24,10 @@ const Usuario = sequelize.define(
     },
     celular: {
       type: DataTypes.STRING,
-      unique: true,
+      unique: {
+        name: "celular_usuario",
+        msg: "Este número de celular ya está registrado",
+      },
     },
     password: {
       type: DataTypes.STRING,

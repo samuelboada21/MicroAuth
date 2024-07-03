@@ -12,7 +12,7 @@ const generateRole = async () => {
             const predefinedRoles = [
                 {nombre: 'Administrador'},
                 {nombre: 'Asegurador'},
-                {nombre: 'inversor'}
+                {nombre: 'Inversor'}
             ];
 
             try {

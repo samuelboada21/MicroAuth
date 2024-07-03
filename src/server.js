@@ -5,8 +5,8 @@ import sequelize from "./database/db.js";
 import dotenv from "dotenv";
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import corsOptions from './util/corsOptions.js';
-import generateRole from "./util/generateRole.js";
+import corsOptions from './utils/corsOptions.js';
+import generateRole from "./utils/generateRole.js";
 import pino_http from 'pino-http';
 import pino from 'pino';
 import helmet from 'helmet';
@@ -61,6 +61,8 @@ app.use(
     },
   })
 );
+//Rutas
+app.use('/api/auth', authRoutes);
 // En caso de acceder a una ruta no especificada
 app.all("*", (req, res) => {
   res.status(404);
