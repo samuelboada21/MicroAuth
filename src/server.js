@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 3000;
 
 //Middlewares
 app.use(helmet()); // Protege la aplicación con cabeceras HTTP seguras
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use(
