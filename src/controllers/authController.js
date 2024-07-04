@@ -165,10 +165,10 @@ export const verifyPermits = async (req, res, next) => {
     if (!match) {
       return res.status(401).json({ error: "Contraseña incorrecta" });
     }
-    if(req.user.id !== userFound.id){
-      req.log.warn("Solicitud de permisos rechazada, no corresponden los datos enviados con el usuario que está usando el sistema");
-      return res.status(401).json({ error: "Los datos proporcionados no corresponden con el usuario actualmente logueado" });
-    }
+    // if(req.user.id !== userFound.id){
+    //   req.log.warn("Solicitud de permisos rechazada, no corresponden los datos enviados con el usuario que está usando el sistema");
+    //   return res.status(401).json({ error: "Los datos proporcionados no corresponden con el usuario actualmente logueado" });
+    // }
     // Enviar el rol del usuario
     res.json({ role: userFound.tipo });
   } catch (error) {
