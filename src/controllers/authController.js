@@ -170,6 +170,7 @@ export const verifyPermits = async (req, res, next) => {
     //   return res.status(401).json({ error: "Los datos proporcionados no corresponden con el usuario actualmente logueado" });
     // }
     // Enviar el rol del usuario
+    console.log("SE ENVIA LO SIGUIENTE", userFound.tipo)
     res.json({ role: userFound.tipo });
   } catch (error) {
     const errorVerify = new Error(
