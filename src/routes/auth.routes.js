@@ -36,7 +36,7 @@ router.post('/register', [limiter, validateUserData], register); //probado
 // @desc Enpoint encargado de enviar el rol del usuario
 // @route POST /api/auth/verifyPermits
 // @access public
-router.post('/verifyPermits', [extractToken, verifyJWT], verifyPermits); //
+router.post('/verifyPermits', verifyPermits); //
 
 // Exportamos el router
 export default router;
